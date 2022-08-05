@@ -8,37 +8,42 @@
 		<div th:replace="layout/header :: menu"></div>
 		<div id="page-content-wrapper" style="width:100%;">
 			<!-- Page content-->
-			<div class="container-fluid" style="margin-top:15px;margin-bottom:10px;">
-				
-<!-- 				<button id="buttonNewFilm" data-toggle="modal" class="btn btn-primary" -->
-<!-- 				data-target="#modalNewFilm">Agregar Pel&iacute;cula</button> -->
-				
-				<button class="btn btn-info" data-toggle="modal" data-target="#modalFiltroTitulo"
-					onclick="titulo()">Filtrar por título</button>
-				<button class="btn btn-info" data-toggle="modal" data-target="#modalFiltroCategoria">Filtrar por
-					categoría</button>
-				<button class="btn btn-info" data-toggle="modal" data-target="#modalFiltroTitulo"
-					onclick="actor()">Filtrar por actor</button>
-				<br><br>
-				<table class="table table-hover" id="tabla">
-					<thead>
-						<tr style="background-color: rgb(5, 49, 120)">
-							<th class="text-white" scope="col">Película</th>
-							<th class="text-white" scope="col">Categoría</th>
-							<th class="text-white" scope="col">Copias disponibles</th>
-							<th class="text-white" scope="col">Acciones</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="pelicula : ${catalogo}">
-							<td scope="row" th:text="${pelicula.title}"></td>
-							<td th:text="${pelicula.category}"></td>
-							<td th:text="${pelicula.copies}"></td>
-							<td><button class="btn btn-info"  th:onclick="'javascript:detalles(\''+ ${pelicula.film_id} +'\');'"><i class="bi bi-eye"></i></button></td>
-						</tr>
-					</tbody>
-				</table>
-
+			<div class="card">
+				<div class="container-fluid" style="margin-top:15px;margin-bottom:10px;">
+					<div class="card-header" style="background:#9ec5fe;text-align:center;border-radius:10px;margin-bottom:5px;">
+						<h1 class="h1">Inicio</h1>
+					</div>
+					<div class="card-body" style="background:#CFE2ff;border-radius:10px;margin-bottom:15px;">
+		<!-- 				<button id="buttonNewFilm" data-toggle="modal" class="btn btn-primary" -->
+		<!-- 				data-target="#modalNewFilm">Agregar Pel&iacute;cula</button> -->
+						
+						<button class="btn btn-info" data-toggle="modal" data-target="#modalFiltroTitulo"
+							onclick="titulo()">Filtrar por título</button>
+						<button class="btn btn-info" data-toggle="modal" data-target="#modalFiltroCategoria">Filtrar por
+							categoría</button>
+						<button class="btn btn-info" data-toggle="modal" data-target="#modalFiltroTitulo"
+							onclick="actor()">Filtrar por actor</button>
+						<br><br>
+						<table class="table table-hover" id="tabla">
+							<thead>
+								<tr style="background-color: rgb(5, 49, 120)">
+									<th class="text-white" scope="col">Película</th>
+									<th class="text-white" scope="col">Categoría</th>
+									<th class="text-white" scope="col">Copias disponibles</th>
+									<th class="text-white" scope="col">Acciones</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="pelicula : ${catalogo}">
+									<td scope="row" th:text="${pelicula.title}"></td>
+									<td th:text="${pelicula.category}"></td>
+									<td th:text="${pelicula.copies}"></td>
+									<td><button class="btn btn-info"  th:onclick="'javascript:detalles(\''+ ${pelicula.film_id} +'\');'"><i class="bi bi-eye"></i></button></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
 			</div>
 		</div>
 

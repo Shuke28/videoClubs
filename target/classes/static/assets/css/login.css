@@ -7,7 +7,7 @@ box-sizing: border-box;
 }
 body {
 font-family: Arial;
-background-color: #006b40;
+background-color: rgb(5, 49, 101);
 padding: 50px;
 }
 .login {

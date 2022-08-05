@@ -8,37 +8,93 @@
 		<div th:replace="layout/header :: menu"></div>
 		<div id="page-content-wrapper" style="width:100%;">
 			<!-- Page content-->
-			<div class="container-fluid" style="margin-top:15px;margin-bottom:10px;">
-				<h1 class="h1">Rentas</h1>
-				<h4 class="h4">Registrar nueva renta</h4>
-				<form method="post" id="rental-form" >
-				
-					<p>N&uacute;mero del cliente: <input type="number"></p>
-					<p>N&uacute;mero de inventario: <input type="number"></p>
-					<p>Importe de pago: <input type="number"></p>
-					<table class="table" id="tablaTarifaUser">
-						<thead>
-							<tr>
-								<th>T&iacute;tulo de Pel&iacute;cula</th>
-								<th>Tarifa</th>
-							</tr>
-						</thead>
-						<tbody>
-						</tbody>
-					</table>
-					<p>Subtotal <input type="number" readonly></p>
-					<p>IVA <input type="number" readonly></p>
-					<p>Total <input type="number" readonly></p>
-					<p>Ingresar pago: <input type="number"></p>
-					<input type="button" value="Registrar" onclick="alert('Renta Registrada');">
-					<p>Cambio: <input type="number"></p>
-					<input type="button" value="Generar Recibo" onclick="alert('Recibo Generado');">
-				</form>
+			<div class="container-fluid" style="margin-top:15px;">
+				<div class="container-fluid" style="margin-top:15px;margin-bottom:10px;">
+					<div class="card-header" style="background:#9ec5fe;text-align:center;border-radius:10px;margin-bottom:5px;">
+						<h1 class="h1">Rentas</h1>
+					</div>
+					<div class="card-body" style="background:#CFE2ff;border-radius:10px;margin-bottom:15px;">
+						<button id="buttonNewRental" data-toggle="modal" class="btn btn-primary"
+						data-target="#modalNewRental">Nueva renta</button>
+								
+						<br><br>
+						<table class="table table-hover" id="tablaRental">
+							<thead>
+								<tr style="background-color: rgb(5, 49, 120)">
+									<th class="text-white" scope="col">Rental date</th>
+									<th class="text-white" scope="col">Inventario Id</th>
+									<th class="text-white" scope="col">Customer Id</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="renta : ${rentals}">
+									<td scope="row" th:text="${renta.rentalDate}"></td>
+									<td th:text="${renta.inventoryId}"></td>
+									<td th:text="${renta.customerId}"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
 			</div>
 		</div>
+		
+		<!-- Modal agregar nueva renta -->
+		
+	<div class="modal fade " id="modalNewRental" tabindex="-1" aria-labelledby="modalNewRental"
+			aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="tituloModalNewRental" style="color:white;">Registro de nueva renta</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+				
+				</div>
+	
+				<form id="formNewRental" th:action="@{/saveRental}" method="POST">
+					<div class="modal-body">
+						<h4 class="h4">N&uacute;mero de cliente</h4>
+						<input id="customerId" placeholder="N&uacute;mero de cliente" class="form-control" type="number" name="customerId" required><br>
+						<input placeholder="Nombre" class="form-control" type="text" name="firstName" id="firstName" required readOnly><br>
+						<input placeholder="Apellido" class="form-control" type="text" name="lastName" id="lastName" required readOnly><br>
+						<h4 class="h4">N&uacute;mero de inventario</h4>
+						<input placeholder="N&uacute;mero de inventario" class="form-control" type="number" id="inventoryId" name="inventoryId" required><br>
+						<button id="botonBuscar" type="button" 		
+						class="btn btn-info">Buscar</button>
+						
+						<h4 class="h4">Titulo de la pelicula</h4>
+							<input  id="tituloFilm" class="form-control" readOnly> <br>
+						<h4 class="h4">Duraci&oacute;n de la renta</h4>
+						<input  id="rentalDuration" class="form-control" readOnly> <br>
+						<h4 class="h4">Tarifa de renta</h4>
+						 <input  id="rentalRate" class="form-control" readOnly> <br> 
+						 <h4 class="h4">Importe de pago</h4>
+						<input id=ingresoPago placeholder="Importe de pago" class="form-control" type="number"  required><br>
+						<h4 class="h4">Cambio</h4>
+						<input  id="cambio" placeholder="Cambio" class="form-control" readOnly> <br> 
+							
+					</div>
+					<div class="modal-footer">
+							<button id="botonCerrar2" type="button" class="btn btn-secondary"
+									data-dismiss="modal">Cancelar</button>
+							<button id="botonGuardarNewrental" type="submit"
+									class="btn btn-info">Guardar</button>
+									
+									
+						</div>
+				
+					</form>
+				</div>
+			</div>
+		</div>
+	
+				
+		
 	</div>
 	<div th:replace="layout/header :: footer"></div>
 	<div th:replace="layout/header :: scripts"></div>
-	<script th:src="@{assets/js/index/index.js}"></script>
+	<script th:src="@{assets/js/rental/rental.js}"></script>
 </body>
 </html>

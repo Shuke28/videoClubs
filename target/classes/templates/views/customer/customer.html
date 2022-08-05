@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	lang="es-MX">
+<div th:replace="layout/header :: estilos"></div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<body>
+	<div th:replace="layout/header :: header"></div>
+	
+	<div class="d-flex" id="wrapper">
+		<div th:replace="layout/header :: menu"></div>
+		<div id="page-content-wrapper" style="width:90%; padding:10px;">
+			<div class="card">
+				<!-- Page content-->
+				<div class="container-fluid" style="margin-top:15px;">
+					<div class="card-header" style="background:#9ec5fe;text-align:center;border-radius:10px;margin-bottom:5px;">
+						<h1 class="h1">Clientes</h1>
+					</div>
+					<div class="card-body" style="background:#CFE2ff;border-radius:10px;margin-bottom:15px;">
+						<button id="buttonNewCustomer" data-toggle="modal" class="btn btn-primary"
+						data-target="#modalNewCustomer">Agregar Cliente</button>
+						
+						<br><br>
+						<table class="table table-hover" id="tablaCustomers">
+							<thead>
+								<tr style="background-color: rgb(5, 49, 120)">
+									<th class="text-white" scope="col">Id</th>
+									<th class="text-white" scope="col">Nombre</th>
+									<th class="text-white" scope="col">Apellido</th>
+									<th class="text-white" scope="col">Correo</th>
+									<th class="text-white" scope="col">Store</th>
+		<!-- 							<th class="text-white" scope="col">Acci&oacute;n</th> -->
+		
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="cliente : ${customers}">
+									<td scope="row" th:text="${cliente.customerId}"></td>
+									<td th:text="${cliente.firstName}"></td>
+									<td th:text="${cliente.lastName}"></td>
+									<td th:text="${cliente.email}"></td>
+									<td th:text="${cliente.storeId}"></td>
+		<!-- 							<td><button title="Eliminar Cliente" class="btn btn-danger" id="eliminarCliente" -->
+		<!-- 								onclick="pruebaBoton()"><i class="bi bi-trash"></i></button></td> -->
+		<!-- 							data-toggle="modal" th:data-target="'#eliminarCustomer' + ${cliente.customerId}" th:onclick="'javascript:detalles(\''+ ${pelicula.film_id} +'\');'" -->
+		
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	<!-- Modal agregar cliente -->
+	<div class="modal fade " id="modalNewCustomer" tabindex="-1" aria-labelledby="modalNewCustomer"
+			aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="tituloModalNewCustomer" style="color:white;">Registrar nuevo cliente</h5>
+					<button id="botonCerrarCustomer1" type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form id="formNewCustomer" th:action="@{/saveCustomer}" method="POST">
+					<div class="modal-body">
+						<input id="firstName" placeholder="Nombre" class="form-control" type="text" name="firstName" required="required"><br>
+						<input id="lastName" placeholder="Apellido" class="form-control" type="text" name="lastName" required="required"><br>
+						<input id="email" placeholder="Correo electr&oacute;nico" class="form-control" name="email" type="email" required="required"><br>
+						
+						<select id="selectCountry" name="selectCountry" class="form-control" required="required">
+							<option value="-1">Selecciona un pa&iacute;s</option>
+							<option th:each="country : ${countries}" th:value="${country.countryId}"
+								th:text="${country.countryName}"></option>
+						</select><br>
+						<select id="selectCity" name="cityId" class="form-control" required="required">
+							<option value="-1">Selecciona una ciudad</option>
+							<option th:each="city : ${cities}" th:value="${city.cityId}"
+								th:text="${city.cityName}"></option>
+						</select><br>
+						<input id="direccion" placeholder="Direcci&oacute;n" name="address" class="form-control" type="text" required="required"><br>
+						
+						<select id="selectStore" name="storeId" class="form-control" required="required">
+		 	    			<option value="-1">Selecciona una tienda</option>
+		    				<option value="1">Tienda 1</option>
+		    				<option value="2">Tienda 2</option>
+	    			    </select>
+					</div>
+					<div class="modal-footer">
+						<button id="botonCerrarCustomer" type="button" class="btn btn-secondary"
+								data-dismiss="modal">Cancelar</button>
+						<button id="botonGuardarNewCustomer" type="submit"
+								class="btn btn-info">Guardar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+<!-- 	Modal Eliminar Customer   -->
+<!-- 	<div th:id="'eliminarCustomer' + ${cliente.customerId}" class="modal fade"> -->
+<!-- 		<div class="modal-dialog"> -->
+<!-- 			<div class="modal-content"> -->
+<!-- 				<div class="modal-header"> -->
+<!-- 					<h5 class="modal-title" id="tituloModalDeleteCustomer" style="color:white;">Eliminar cliente</h5> -->
+<!-- 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
+<!-- 						<span aria-hidden="true">&times;</span> -->
+<!-- 					</button> -->
+<!-- 				</div> -->
+<!-- 				<form id="formDeleteCustomer" th:action="@{/eliminarCustomer}" th:object="${cliente}" method="POST" class="was-validated"> -->
+<!-- 					<div class="modal-body"> -->
+<!-- 						<div> -->
+<!-- 							<p>Est&aacute;s seguro que deseas eliminar este cliente?</p> -->
+<!-- 							<input type="hidden" name="customerId" th:value="${cliente.customerId}"> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="modal-footer"> -->
+<!-- 						<button id="botonCerrarCustomer" type="button" class="btn btn-secondary" -->
+<!-- 								data-dismiss="modal">Cancelar</button> -->
+<!-- 						<button id="botonGuardarDeleteCustomer" type="submit" -->
+<!-- 								class="btn btn-info">Eliminar</button> -->
+<!-- 					</div> -->
+<!-- 				</form> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+	
+	</div>
+	<div th:replace="layout/header :: footer"></div>
+	<div th:replace="layout/header :: scripts"></div>
+	<script th:src="@{assets/js/customer/customer.js}"></script>
+</body>
+</html>

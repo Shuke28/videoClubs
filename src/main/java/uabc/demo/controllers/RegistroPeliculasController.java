@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import uabc.demo.entities.Actor;
+import uabc.demo.entities.CatalogoIndex;
 import uabc.demo.entities.Category;
 
 import uabc.demo.entities.Film;
@@ -60,6 +61,8 @@ public class RegistroPeliculasController {
 	@Autowired
 	private CategoryService categoryService;
 	
+	@Autowired
+	private FilmService filmService;
 	
 	
 	
@@ -67,8 +70,14 @@ public class RegistroPeliculasController {
 	public String RegistroDePeliculas(Model model, HttpServletRequest request, HttpServletResponse response) {
 
 		FilmCategory fCategory = new FilmCategory();
+		List<CatalogoIndex> catalogo;
 		
-		
+		if(model.getAttribute("catalogo")==null) {
+			catalogo = filmService.obtenerPeliculas();
+		}
+		else {
+			catalogo = (List<CatalogoIndex>) model.getAttribute("catalogo");
+		}
 
 		List<Language> lenguajes = lanService.findAll();
 		
@@ -79,7 +88,7 @@ public class RegistroPeliculasController {
 		
 		model.addAttribute("film", new Film());
 		
-
+		model.addAttribute("catalogo",catalogo);
 		model.addAttribute("languages", lenguajes );
 		model.addAttribute("actors", actors );
 		model.addAttribute("categories", categories );

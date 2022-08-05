@@ -8,30 +8,35 @@
 		<div th:replace="layout/header :: menu"></div>
 		<div id="page-content-wrapper" style="width:100%;">
 			<!-- Page content-->
-			<div class="container-fluid" style="margin-top:15px;margin-bottom:10px;">
-				<h1 class="h1">Rentas</h1>
-				<button id="buttonNewRental" data-toggle="modal" class="btn btn-primary"
-				data-target="#modalNewRental">Nueva renta</button>
-						
-				<br><br>
-				<table class="table table-hover" id="tablaRental">
-					<thead>
-						<tr style="background-color: rgb(5, 49, 120)">
-							<th class="text-white" scope="col">Rental date</th>
-							<th class="text-white" scope="col">Inventario Id</th>
-							<th class="text-white" scope="col">Customer Id</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="renta : ${rentals}">
-							<td scope="row" th:text="${renta.rentalDate}"></td>
-							<td th:text="${renta.inventoryId}"></td>
-							<td th:text="${renta.customerId}"></td>
-						</tr>
-					</tbody>
-				</table>
-				
-			</div>	
+			<div class="container-fluid" style="margin-top:15px;">
+				<div class="container-fluid" style="margin-top:15px;margin-bottom:10px;">
+					<div class="card-header" style="background:#9ec5fe;text-align:center;border-radius:10px;margin-bottom:5px;">
+						<h1 class="h1">Rentas</h1>
+					</div>
+					<div class="card-body" style="background:#CFE2ff;border-radius:10px;margin-bottom:15px;">
+						<button id="buttonNewRental" data-toggle="modal" class="btn btn-primary"
+						data-target="#modalNewRental">Nueva renta</button>
+								
+						<br><br>
+						<table class="table table-hover" id="tablaRental">
+							<thead>
+								<tr style="background-color: rgb(5, 49, 120)">
+									<th class="text-white" scope="col">Rental date</th>
+									<th class="text-white" scope="col">Inventario Id</th>
+									<th class="text-white" scope="col">Customer Id</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="renta : ${rentals}">
+									<td scope="row" th:text="${renta.rentalDate}"></td>
+									<td th:text="${renta.inventoryId}"></td>
+									<td th:text="${renta.customerId}"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
 		</div>
 		
 		<!-- Modal agregar nueva renta -->
