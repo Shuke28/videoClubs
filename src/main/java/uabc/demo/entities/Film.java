@@ -1,5 +1,8 @@
 package uabc.demo.entities;
+
+import java.math.BigDecimal;
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.ColumnResult;
@@ -9,8 +12,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedNativeQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.SqlResultSetMapping;
 import javax.persistence.Table;
 
@@ -72,13 +77,13 @@ private String description;
 @Column(name = "rental_duration")
 private Short rentalDuration;
 
-@Column(name = "rental_rate", precision = 4, scale = 2, columnDefinition = "numeric(4,2)")
-private Float rentalRate;
+@Column(name = "rental_rate")
+private BigDecimal rentalRate;
 
 private Short length;
 
-@Column(name = "replacement_cost", precision = 5, scale = 2, columnDefinition = "numeric(5,2)")
-private Integer replacementCost;
+@Column(name = "replacement_cost")
+private BigDecimal replacementCost;
 
 @DateTimeFormat(pattern="MM/dd/yyyy")
 private java.sql.Timestamp last_update;
@@ -87,7 +92,15 @@ private java.sql.Timestamp last_update;
 @JoinColumn(name="language_id")
 private Language language;
 
-private String rating;
+@OneToOne
+@JoinColumn(name="film_id")
+private Inventory inventory;
+
+//@ManyToMany
+//@JoinColumn(name="filmId")
+//private List<FilmActor> filmActor;
+
+//private String rating;
 
 //private Date release_year;
 
@@ -123,11 +136,11 @@ public void setRentalDuration(Short rentalDuration) {
 	this.rentalDuration = rentalDuration;
 }
 
-public Float getRentalRate() {
+public BigDecimal getRentalRate() {
 	return rentalRate;
 }
 
-public void setRentalRate(Float rentalRate) {
+public void setRentalRate(BigDecimal rentalRate) {
 	this.rentalRate = rentalRate;
 }
 
@@ -139,11 +152,11 @@ public void setLength(Short length) {
 	this.length = length;
 }
 
-public Integer getReplacementCost() {
+public BigDecimal getReplacementCost() {
 	return replacementCost;
 }
 
-public void setReplacementCost(Integer replacementCost) {
+public void setReplacementCost(BigDecimal replacementCost) {
 	this.replacementCost = replacementCost;
 }
 
@@ -164,13 +177,13 @@ public void setLanguage(Language language) {
 	this.language = language;
 }
 
-public String getRating() {
-	return rating;
-}
-
-public void setRating(String rating) {
-	this.rating = rating;
-}
+//public String getRating() {
+//	return rating;
+//}
+//
+//public void setRating(String rating) {
+//	this.rating = rating;
+//}
 
 @Override
 public String toString() {

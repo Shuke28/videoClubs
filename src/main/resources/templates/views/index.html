@@ -9,7 +9,10 @@
 		<div id="page-content-wrapper" style="width:100%;">
 			<!-- Page content-->
 			<div class="container-fluid" style="margin-top:15px;margin-bottom:10px;">
-
+				
+<!-- 				<button id="buttonNewFilm" data-toggle="modal" class="btn btn-primary" -->
+<!-- 				data-target="#modalNewFilm">Agregar Pel&iacute;cula</button> -->
+				
 				<button class="btn btn-info" data-toggle="modal" data-target="#modalFiltroTitulo"
 					onclick="titulo()">Filtrar por título</button>
 				<button class="btn btn-info" data-toggle="modal" data-target="#modalFiltroCategoria">Filtrar por
@@ -19,7 +22,7 @@
 				<br><br>
 				<table class="table table-hover" id="tabla">
 					<thead>
-						<tr style="background-color: #239B56;">
+						<tr style="background-color: rgb(5, 49, 120)">
 							<th class="text-white" scope="col">Película</th>
 							<th class="text-white" scope="col">Categoría</th>
 							<th class="text-white" scope="col">Copias disponibles</th>
@@ -36,8 +39,6 @@
 					</tbody>
 				</table>
 
-
-
 			</div>
 		</div>
 
@@ -47,7 +48,7 @@
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="tituloModalCambiar">Filtrar por título</h5>
+						<h5 class="modal-title" id="tituloModalCambiar" style="color:white;">Filtrar por título</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -66,14 +67,14 @@
 				</div>
 			</div>
 		</div>
-
+		
 		<!-- Modal filtro categoria -->
 		<div class="modal fade " id="modalFiltroCategoria" tabindex="-1" aria-labelledby="modalFiltroCategoria"
 			aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="tituloModalCategoria">Filtrar por categoría</h5>
+						<h5 class="modal-title" id="tituloModalCategoria" style="color:white;">Filtrar por categoría</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -97,13 +98,13 @@
 				</div>
 			</div>
 		</div>
-
+<!-- 		<section th:replace="template/views/RegistroPeliculasMax/RegistroPeliculas :: registrarFilms"></section> -->
 		<!-- Modal detalles -->
 		<div class="modal fade " id="modalDetalles" tabindex="-1" aria-labelledby="modalDetalles" aria-hidden="true">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="tituloModalDetalles">Detalles</h5>
+						<h5 class="modal-title" id="tituloModalDetalles" style="color:white;">Detalles</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -170,7 +171,6 @@
 				</div>
 			</div>
 		</div>
-
 	</div>
 	<div th:replace="layout/header :: footer"></div>
 	<div th:replace="layout/header :: scripts"></div>

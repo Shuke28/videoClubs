@@ -26,7 +26,7 @@ import uabc.demo.services.UserService;
 			http.authorizeRequests().antMatchers("/", "/assets/**").permitAll()
 			.anyRequest().authenticated()
 			.and()
-			.formLogin().loginPage("/login").defaultSuccessUrl("/say/helloMAV").permitAll()
+			.formLogin().loginPage("/login").defaultSuccessUrl("/index").permitAll()
 			.and()
 			.logout().permitAll();
 			

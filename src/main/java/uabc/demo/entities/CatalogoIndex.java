@@ -42,11 +42,21 @@ public class CatalogoIndex {
 		this.copies = copies;
 	}
 	
-	
+	//toString
 	@Override
 	public String toString() {
-		return "CatalogoIndex [film_id=" + film_id + ", title=" + title + ", category=" + category + ", copies="
-				+ copies + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("CatalogoIndex [film_id=");
+		builder.append(film_id);
+		builder.append(", title=");
+		builder.append(title);
+		builder.append(", category=");
+		builder.append(category);
+		builder.append(", copies=");
+		builder.append(copies);
+		builder.append("]");
+		return builder.toString();
 	}
+
 	
 }

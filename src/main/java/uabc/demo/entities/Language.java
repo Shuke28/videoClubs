@@ -15,35 +15,42 @@ public class Language {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer language_id;
+	@Column(name="language_id")
+	private Integer languageId;
 	
 	@Column(columnDefinition = "bpchar(20)", length = 20)
 	private String name;
+	
 	@DateTimeFormat(pattern="MM/dd/yyyy")
 	private java.sql.Timestamp last_update;
+	public Integer getLanguageId() {
+		return languageId;
 	
-	public Integer getLanguage_id() {
-		return language_id;
 	}
-	public void setLanguage_id(Integer language_id) {
-		this.language_id = language_id;
+	public void setLanguageId(Integer languageId) {
+		this.languageId = languageId;
 	}
+	
 	public String getName() {
 		return name;
 	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 	public java.sql.Timestamp getLast_update() {
 		return last_update;
 	}
+	
 	public void setLast_update(java.sql.Timestamp last_update) {
 		this.last_update = last_update;
 	}
+	
 	@Override
 	public String toString() {
-		return "Language [language_id=" + language_id + ", name=" + name + ", last_update=" + last_update + "]";
+		return "Language [languageId=" + languageId + ", name=" + name + ", last_update=" + last_update + "]";
 	}
-	
+
 	
 }

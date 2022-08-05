@@ -27,6 +27,9 @@ public class Inventory {
 
 	@Column(name = "last_update")
 	private Date lastUpdate;
+	
+	@Column(name = "store_id")
+	private Integer storeId;
 
 	public Inventory() {
 		super();
@@ -38,8 +41,14 @@ public class Inventory {
 		this.inventoryId = inventoryId;
 	}
 
+	
+	
 	public Integer getInventoryId() {
 		return inventoryId;
+	}
+
+	public void setInventoryId(Integer inventoryId) {
+		this.inventoryId = inventoryId;
 	}
 
 	public Film getFilm() {
@@ -50,16 +59,20 @@ public class Inventory {
 		this.film = film;
 	}
 
-	public void setInventoryId(Integer inventoryId) {
-		this.inventoryId = inventoryId;
-	}
-
 	public Date getLastUpdate() {
 		return lastUpdate;
 	}
 
 	public void setLastUpdate(Date lastUpdate) {
 		this.lastUpdate = lastUpdate;
+	}
+
+	public Integer getStoreId() {
+		return storeId;
+	}
+
+	public void setStoreId(Integer storeId) {
+		this.storeId = storeId;
 	}
 
 	@Override

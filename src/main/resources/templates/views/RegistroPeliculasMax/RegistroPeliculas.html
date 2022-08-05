@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	lang="es-MX">
+
+<div th:replace="layout/header :: estilos"></div>
+
+
+<!-- ////////////////////////////////////////////////////  -->
+
+<!-- ////////////////////////////////////////////////////  -->
+
+<body>
+
+
+	<div th:replace="layout/header :: header"></div>
+	<div class="d-flex" id="wrapper">
+	<div th:replace="layout/header :: menu"></div>
+		<div id="page-content-wrapper" style="width:100%;">
+			<!-- Page content-->
+			<div class="container-fluid" style="margin-top:15px;margin-bottom:10px;">
+				<h1 class="h1">Pel&iacute;culas</h1>
+				<button id="buttonNewFilm" data-toggle="modal" class="btn btn-primary"
+				data-target="#modalNewFilm">Agregar Pel&iacute;cula</button>
+			</div>
+		</div>
+	</div>
+		
+	<!-- Modal agregar film -->
+	<div class="modal fade " id="modalNewFilm" tabindex="-1" aria-labelledby="modalNewFilm"
+			aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="tituloModalNewFilm" style="color:white;">Registrar nueva pel&iacute;cula</h5>
+					<button id="botonCerrarFilm1" type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form th:action="@{/saveFilm}" th:object="${film}" method="POST" class="form">
+					<div class="modal-body">
+						<div class="registroPeliculas">
+						<div class="regPel-screen">
+							<div class="regPel-form">						
+							    <!-- TITULO -->
+								<div class="control-group">
+								<b>TITULO: </b>
+									<input type="text" id="titulo" name="title" class="form-control" value="" th:field="*{title}" placeholder="Titulo" required>
+								</div>
+								<br>
+								<!-- DESCRIPCION -->
+								<div class="control-group">
+								<b>DESCRIPCION: </b>
+									<input type="text" id="descripcion" name="description" class="form-control" value="" th:field="*{description}" placeholder="Descripcion" >
+								</div>
+								<br>
+								<!-- LENGUAJE -->
+								<div>
+								<b>LENGUAJE: </b>
+									<select id="selectLanguage" name="language" class="form-control" th:field="*{language}" required>
+										<option value="-1">Selecciona el lenguaje de la pelicula</option>
+										<option th:each="languages : ${languages}" th:value="${languages.languageId}"
+												th:text="${languages.name}"></option>
+									</select>
+								</div>
+								<br>
+								<!-- DURACION (short)-->
+								<div class="control-group">
+								<b>DURACION: </b>
+									<input type="number" max="30" min="0" id="duracion" name="lenght" class="form-control" value="" th:field="*{length}" placeholder="Duracion (minutos, short)" required>
+								</div>
+								<br>
+								<!-- RENTAL DURATION (short)-->
+								<div class="control-group">
+								<b>RENTAL DURATION: </b>
+									<input type="number" max="30" min="0"  id="rentalDuration" name="rentalDuration" class="form-control" value="" th:field="*{rentalDuration}" placeholder="Rental Duration (short)" required>
+								</div>
+								<br>
+								<!-- RENTAL RATE (float)-->
+								<div class="control-group">
+								<b>RENTAL RATE: </b>
+									<input type="number" max="99.99" min="0" id="rentalRate" name="rentalRate" class="form-control" value="" th:field="*{rentalRate}" placeholder="Rental Rate" required>
+								</div>
+								<br>
+								<!-- REPLACEMENT COST (int)-->
+								<div class="control-group">
+								<b>REPLACEMENT COST: </b>
+									<input type="number" max="99.99" min="0" id="replacementCost" name="replacementCost" class="form-control" value="" th:field="*{replacementCost}" placeholder="Replacement Cost" required>
+								</div>
+								<br>
+								<!-- CATEGORIAS (1) 	-->					
+								
+								<div>
+								<b>CATEGORIAS: </b>
+  									<select class="selectpicker" multiple aria-label="size 3 select example" id="selectCategory" name="categories" data-live-search="true" required>
+    									<option th:each="categories : ${categories}" th:value="${categories.id}" th:text="${categories.name}"></option>
+									</select>
+								</div>
+								<br>
+								
+								<!-- ACTORES -->
+								<div>
+								<b>ACTORES: </b>
+  									<select class="selectpicker" multiple aria-label="size 3 select example" id="selectActor" name="actors" data-live-search="true" required>
+    									<option th:each="actors : ${actors}" th:value="${actors.actorId}" th:text="${actors.firstName} + ' ' + ${actors.lastName}"></option>
+									</select>
+								</div>
+								<br>
+								<!-- NUMERO DE COPIAS -->
+								<div class="control-group">
+								<b>TITULO: </b>
+									<input type="number" id="numCopias" name="numeroCopias" class="form-control" value="" placeholder="Num Copias" required>
+								</div>
+							</div>
+						</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button id="botonCerrarFilm" type="button" class="btn btn-secondary"
+								data-dismiss="modal">Cancelar</button>
+						<button id="botonGuardarNewFilm" type="submit"
+								class="btn btn-info">Guardar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div th:replace="layout/header :: footer"></div>
+	<div th:replace="layout/header :: scripts"></div>
+
+	
+	<!-- /////////////////// S C R I P T /////////////////////////////////  -->
+	
+	<!-- /////////////////////////////////////////////////////////////////  -->
+	
+	
+	<!--
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js" integrity="sha512-FHZVRMUW9FsXobt+ONiix6Z0tIkxvQfxtCSirkKc5Sb4TKHmqq1dZa8DphF0XqKb3ldLu/wgMa8mT6uXiLlRlw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	 -->
+	
+	<script th:src="@{assets/js/index/index.js}"></script>
+	<script th:src="@{assets/js/film.js}"></script>
+</body>
+</html>

@@ -1,6 +1,5 @@
 package uabc.demo.controllers;
 
-
 import java.io.IOException;
 import java.security.Principal;
 import java.text.DateFormat;
@@ -31,6 +30,7 @@ import uabc.demo.services.CategoryService;
 import uabc.demo.services.FilmService;
 import uabc.demo.services.InventoryService;
 import uabc.demo.services.LanguageService;
+import uabc.demo.services.RentalService;
 
 
 @Controller
@@ -48,6 +48,9 @@ public class HomeController {
 	@Autowired
 	private InventoryService inventoryService;
 
+	@Autowired
+	private RentalService rentalService;
+	
 	@RequestMapping(value = {"/","index"})
 	public String index(Model model, HttpServletRequest request, HttpServletResponse response, Principal principal) {
 		
@@ -142,10 +145,27 @@ public class HomeController {
 		return response;
 	}
 	
-	@GetMapping(value="rental")
-	public String rental(Model model, HttpServletRequest request, HttpServletResponse response) {
+	/*
+	@GetMapping(value="RegistroPeliculas")
+	public String RegistroPeliculas(Model model, HttpServletRequest request, HttpServletResponse response) {
 		
-		return "views/renta/rental";
+		return "views/RegistroPeliculasMax/RegistroPeliculas";
 	}
+	*/
+
+//	@GetMapping(value="customer")
+//	public String customer(Model model, HttpServletRequest request, HttpServletResponse response) {
+//		
+//		return "views/customer/customer";
+//	}
+	
+	/*
+	@GetMapping(value="RegistroDePeliculas")
+	public String RegistroDePeliculas(Model model, HttpServletRequest request, HttpServletResponse response) {
+		
+		return "views/registroPeliculas/RegistroDePeliculas";
+	}
+	*/
+
 	
 }

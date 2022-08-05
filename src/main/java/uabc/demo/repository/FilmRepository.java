@@ -28,6 +28,7 @@ public interface FilmRepository  extends JpaRepository<Film, Integer>{
 		@Query(value ="select concat(a.first_name,' ', a.last_name) as name from actor a, film f, film_actor fa where fa.actor_id=a.actor_id and fa.film_id=f.film_id and f.film_id=?1 " , nativeQuery=true)
 		List<String> obtenerActores(Integer filmId);
 		
+		Film findByTitle(String title);
 		
 	}
 

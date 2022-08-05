@@ -1,5 +1,6 @@
 package uabc.demo.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,16 @@ import uabc.demo.repository.LanguageRepository;
 		@Override
 		public Optional<Language> findById(Integer id) {
 			return languageRepository.findById(id);
+		}
+		
+		/*public List<Language> findAll(){
+			return languageRepository.findAll();
+		}*/
+		
+
+		@Override
+		public List<Language> findAll() {
+			return languageRepository.findAll();
 		}
 
 	}
