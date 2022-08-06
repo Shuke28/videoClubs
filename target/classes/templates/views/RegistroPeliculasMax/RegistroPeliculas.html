@@ -1,13 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
 	lang="es-MX">
-
 <div th:replace="layout/header :: estilos"></div>
-
-
-<!-- ////////////////////////////////////////////////////  -->
-
-<!-- ////////////////////////////////////////////////////  -->
 
 <body>
 
@@ -150,21 +144,82 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- Modal detalles -->
+		<div class="modal fade " id="modalDetalles" tabindex="-1" aria-labelledby="modalDetalles" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="tituloModalDetalles" style="color:white;">Detalles</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="shadow-lg p-3 mb-5 bg-body rounded">
+						<table class="table table-hover">
+							<tbody>
+								<tr>
+									<td style="width: 30%;"><p class="fw-bold">Título:</p></td>
+									<td><h6 id="detalleTitulo" class="">ACADEMY DINOSAUR</h6></td>
+								</tr>
+								<tr>
+									<td style="width: 30%;"><p class="fw-bold">ID:</p></td>
+									<td><p id="detalleNumPelicula" class="">1</p></td>
+								</tr>
+								<tr>
+									<td><p class="fw-bold">Precio de renta:</p></td>
+									<td><b><p id="detallePrecio" class="">$12</p></b></td>
+								</tr>
+								<tr>
+									<td><p class="fw-bold">Lanzamiento:</p></td>
+									<td><p id="detalleLanzamiento" class="">2026</p></td>
+								</tr>
+								<tr>
+									<td><p class="fw-bold">Duración:</p></td>
+									<td><p id="detalleDuracion" class="">117 min</p></td>
+								</tr>
+								<tr>
+									<td><p class="fw-bold">Categoria:</p></td>
+									<td><p id="detalleCategorias" class="">Documentary</p></td>
+								</tr>
+								<tr>
+									<td><p class="fw-bold">Lenguaje:</p></td>
+									<td><p id="detalleLenguaje" class="">2026</p></td>
+								</tr>
+								<tr>
+									<td><p class="fw-bold">Clasificación:</p></td>
+									<td><p id="detalleClasificacion" class="">G</p></td>
+								</tr>
+								<tr>
+									<td><p class="fw-bold">Descripción:</p></td>
+									<td><p id="detalleDescripcion" class="">A Epic Drama of a Feminist And a Mad Scientist who must Battle a Teacher in The Canadian Rockies</p></td>
+								</tr>
+								<tr>
+									<td><p class="fw-bold">Actores:</p></td>
+									<td>
+										<ul id="detalleActores" class="list-group list-group-numbered">
+										<li>PENELOPE GUINESS</li>
+										<li>NICK WAHLBERG</li>
+										<li>ED CHASE</li>
+										</ul>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button id="botonExportarPDF"  type="button" class="btn btn-outline-danger"><i class="bi bi-file-earmark-pdf-fill">Exportar</i></button>
+						<button id="botonCerrar3" type="button" class="btn btn-secondary"
+							data-dismiss="modal">Cerrar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	
 	<div th:replace="layout/header :: footer"></div>
 	<div th:replace="layout/header :: scripts"></div>
-
-	
-	<!-- /////////////////// S C R I P T /////////////////////////////////  -->
-	
-	<!-- /////////////////////////////////////////////////////////////////  -->
-	
-	
-	<!--
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-	
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js" integrity="sha512-FHZVRMUW9FsXobt+ONiix6Z0tIkxvQfxtCSirkKc5Sb4TKHmqq1dZa8DphF0XqKb3ldLu/wgMa8mT6uXiLlRlw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	 -->
 	
 	<script th:src="@{assets/js/index/index.js}"></script>
 	<script th:src="@{assets/js/film.js}"></script>
